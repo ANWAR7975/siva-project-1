@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SivaWeb</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <h2>Welcome to Siva Academy</h2>
+        <form id="sivaForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" oninput="showGreeting()" onfocus="changeBackground()">
+            <p id="greeting"></p>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" onfocus="changeBackground()">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" onfocus="changeBackground()">
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" onfocus="changeBackground()">
+            
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male"> <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female"> <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="Other"> <label for="other">Other</label>
+
+
+            
+            
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 SivaWeb Inc.</p>
+    </footer>
+    
+    <script>
+        document.getElementById("sivaForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let age = document.getElementById("age").value;
+            let gender = document.querySelector("input[name='gender']:checked");
+            
+            if (!name || !email || !password || !age || !gender) {
+                alert("All fields are required!");
+                return;
+            }
+            if (!email.includes("@") || !email.includes(".")) {
+                alert("Invalid email format!");
+                return;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long!");
+                return;
+            }
+            alert("Form Submitted Successfully!");
+            document.getElementById("sivaForm").reset();
+        });
+
+        function showGreeting() {
+            let name = document.getElementById("name").value;
+            document.getElementById("greeting").innerText = name ? `Hello, ${name}!` : "";
+        }
+
+        function changeBackground() {
+            document.getElementById("sivaForm").style.backgroundColor = "#e0f7fa";
+            setTimeout(() => {
+                document.getElementById("sivaForm").style.backgroundColor = "white";
+            }, 500);
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</body>
+</html>
